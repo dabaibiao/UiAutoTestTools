@@ -1,10 +1,7 @@
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.Assert;
 import org.testng.annotations.*;
-import java.io.File;
 import java.net.URL;
 
 
@@ -15,11 +12,13 @@ public class AndroidTest {
     @BeforeClass
     public void setUp() throws Exception {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName", "Android Emulator");
-        capabilities.setCapability("app", "");
-        capabilities.setCapability("appPackage", "io.appium.android.apis");
-        capabilities.setCapability("appActivity", ".ApiDemos");
+        capabilities.setCapability("deviceName", "Android");
+//        capabilities.setCapability("app", "E:\\test\\zy.apk");
+        capabilities.setCapability("appPackage", "com.csii.zybk.ui");
+        capabilities.setCapability("appActivity", "com.zybank.mobilebank.WelcomeActivity");
 //        capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
+        capabilities.setCapability("automationName","UiAutomator2");
+//        capabilities.setCapability("udid", serialNumber);
         driver = new AndroidDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 
     }
@@ -31,8 +30,9 @@ public class AndroidTest {
 
     @Test()
     public void testCreateSession() {
-//        String activity = driver.currentActivity();
-//        String pkg = driver.getCurrentPackage();
+        driver.findElementById("com.csii.zybk.ui:id/tv_login").click();
+        driver.findElementById("com.csii.zybk.ui:id/etUsername").sendKeys("156");
+
     }
 
 }
